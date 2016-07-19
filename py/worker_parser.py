@@ -40,6 +40,7 @@ class WorkerParser:
 
 		return workerEvents
 
+	# TODO make this better
 	def __simplifyWorkerEvents(self, workerEvents):
 		simplifiedWE = []
 
