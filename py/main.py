@@ -14,8 +14,6 @@ import json
 
 def main():
 	employeeShiftsPath = './data/employee_shifts/'
-	employeeGroupsPath = './data/employee_groups.json'
-	labGroupsPath = './data/lab_groups.json'
 
 	if len(sys.argv) != 4:
 		sys.exit('Need 3 arguments')
