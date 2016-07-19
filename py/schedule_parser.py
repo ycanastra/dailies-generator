@@ -1,7 +1,8 @@
-from bs4 import BeautifulSoup
 import urllib2
-import datetime
 import re
+
+from bs4 import BeautifulSoup
+from datetime import datetime
 
 from schedule_event import ScheduleEvent
 
@@ -13,47 +14,46 @@ class ScheduleParser:
 		soup = self.__soup
 		events = []
 
-		mydivs = soup.findAll('div', { 'class' : 'calendar_event_weekly' })#, 'title' : labs[i] })
+		mydivs = soup.findAll('div', { 'class' : 'calendar_event_weekly' })
 
 		for item in mydivs:
-			blah = item.get_text('|', strip=True).split('|')
+			eventArray = item.get_text('|', strip=True).split('|')
 
-			for j in range(len(blah)):
-				blah[j] = blah[j].encode('ascii','ignore')
+			for j in range(len(eventArray)):
+				eventArray[j] = eventArray[j].encode('ascii','ignore')
 
-				times = self.__getTimes(blah[-2])
+				times = self.__getTimes(eventArray[-2])
 				startTime = times[0]
 				endTime = times[1]
+				lab = item['title']
+				eventName = eventArray[0]
 
-			if len(blah) == 3:
-				events.append(ScheduleEvent(startTime, endTime, item['title'], blah[0], None))
-
-			else:
-				events.append(ScheduleEvent(startTime, endTime, item['title'], blah[0], blah[1]))
+			if len(eventArray) == 3: # Has no instrcutor name
+				newSE = ScheduleEvent(startTime, endTime, lab, eventName, None)
+				events.append(newSE)
+			else: # Has a instructor name
+				instructorName = eventArray[1]
+				newSE = ScheduleEvent(startTime, endTime, lab, eventName, instructorName)
+				events.append(newSE)
 
 		return events
 
+	# Takes the timeString and convert it into datetime values
+	# Time is in format 9p or 9:30p depending on if it has minutes
 	def __getTimes(self, timeString):
-		startStr = timeString.split('-')[0]
-		endStr = timeString.split('-')[1]
+		# Adding m at the end so strptime can recognize the am/pm
+		startStr = timeString.split('-')[0] + 'm'
+		endStr = timeString.split('-')[1] + 'm'
 
-		startHour = int(re.search(r'\d+', startStr).group())
-		endHour = int(re.search(r'\d+', endStr).group())
-
-		startMinute = 0
-		endMinute = 0
-
+		# If it has a colon it has minutes
+		# Otherwise, it doesn't have any minutes
 		if ':' in startStr:
-			startMinute = 30
+			startTime = datetime.strptime(startStr, '%I:%M%p')
+		else:
+			startTime = datetime.strptime(startStr, '%I%p')
 		if ':' in endStr:
-			endMinute = 30
-
-		if startStr[-1] == 'p' and startHour != 12:
-			startHour += 12
-		if endStr[-1] == 'p' and endHour != 12:
-			endHour += 12
-
-		startTime = datetime.time(startHour, startMinute)
-		endTime = datetime.time(endHour, endMinute)
+			endTime = datetime.strptime(endStr, '%I:%M%p')
+		else:
+			endTime = datetime.strptime(endStr, '%I%p')
 
 		return (startTime, endTime)

@@ -35,11 +35,11 @@ class ScheduleEvent:
 		startTime = self.__startTime
 		endTime = self.__endTime
 
-		if startTime.minute == 30:
+		if startTime.minute != 0:
 			startStr = startTime.strftime("%I:%M%p")
 		else:
 			startStr = startTime.strftime("%I%p")
-		if endTime.minute == 30:
+		if endTime.minute != 0:
 			endStr = endTime.strftime("%I:%M%p")
 		else:
 			endStr = endTime.strftime("%I%p")
