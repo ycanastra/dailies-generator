@@ -7,18 +7,12 @@ from bs4 import BeautifulSoup
 
 from schedule_parser import ScheduleParser
 from worker_parser import WorkerParser
-from lab_creator import LabCreator
 from workbook_creator import WorkbookCreator
 
 import os
-
-
 import json
 
-
 def main():
-
-
 	employeeShiftsPath = './data/employee_shifts/'
 	employeeGroupsPath = './data/employee_groups.json'
 	labGroupsPath = './data/lab_groups.json'
@@ -45,8 +39,6 @@ def main():
 	workerParser = WorkerParser(employeeShiftsPath)
 	workerEvents = workerParser.getWorkerEvents()
 
-	# labCreator = LabCreator(group)
-	# labs = labCreator.createLabs()
 
 	wbCreator = WorkbookCreator(soup, name, group, dateTime, scheduleEvents,
 								workerEvents)
