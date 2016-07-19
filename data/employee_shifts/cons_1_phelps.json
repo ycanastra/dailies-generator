@@ -1,75 +1,73 @@
-{"CONSULTANT 1 PHELPS" :
-	[
-		{"Sunday":
-			[]
-		},
-		{"Monday":
-			[
-				{"8" : "Xiaowen"},
-				{"9" : "Xiaowen"},
-				{"10": "Xiaowen"},
-				{"11": "Rachel"},
-				{"12": "Rachel"},
-				{"13": "Crystal"},
-				{"14": "Crystal"},
-				{"15": "Lindsey"},
-				{"16": "Lindsey"}
-			]
-		},
-		{"Tuesday":
-			[
-				{"8" : "Xiaowen"},
-				{"9" : "Xiaowen"},
-				{"10": "Xiaowen"},
-				{"11": "Claire"},
-				{"12": "Claire"},
-				{"13": "Claire"},
-				{"14": "Teresa"},
-				{"15": "Teresa"},
-				{"16": "Teresa"}
-			]
-		},
-		{ "Wednesday":
-			[
-				{"8" : "Claire"},
-				{"9" : "Claire"},
-				{"10": "Claire"},
-				{"11": "Claire"},
-				{"12": "Jasper"},
-				{"13": "Jasper"},
-				{"14": "Jasper"},
-				{"15": "Crystal"},
-				{"16": "Crystal"}
-			]
-		},
-		{ "Thursday":
-			[
-				{"8" : "Japser"},
-				{"9" : "Japser"},
-				{"10": "Japser"},
-				{"11": "Japser"},
-				{"12": "Andrew"},
-				{"13": "Andrew"},
-				{"14": "Crystal"},
-				{"15": "Crystal"},
-				{"16": "Crystal"}
-			]
-		},
-		{ "Friday":
-			[
-				{"8" : "Nicole"},
-				{"9" : "Nicole"},
-				{"10": "Nicole"},
-				{"11": "Lindsey"},
-				{"12": "Lindsey"},
-				{"13": "Lindsey"},
-				{"14": "Lindsey"},
-				{"15": "Andrew"},
-				{"16": "Andrew"}
-			]
-		},
-		{ "Saturday":
-			[]
-		}
-	]
+{
+  "CONSULTANT 1 PHELPS":
+  {
+    "Sunday":
+    {
+
+    },
+    "Monday":
+    {
+			"8" : "Xiaowen",
+			"9" : "Xiaowen",
+			"10": "Xiaowen",
+			"11": "Rachel",
+			"12": "Rachel",
+			"13": "Crystal",
+			"14": "Crystal",
+			"15": "Lindsey",
+			"16": "Lindsey"
+    },
+    "Tuesday":
+    {
+			"8" : "Xiaowen",
+			"9" : "Xiaowen",
+			"10": "Xiaowen",
+			"11": "Claire",
+			"12": "Claire",
+			"13": "Claire",
+			"14": "Teresa",
+			"15": "Teresa",
+			"16": "Teresa"
+    },
+    "Wednesday":
+    {
+			"8" : "Claire",
+			"9" : "Claire",
+			"10": "Claire",
+			"11": "Claire",
+			"12": "Jasper",
+			"13": "Jasper",
+			"14": "Jasper",
+			"15": "Crystal",
+			"16": "Crystal"
+    },
+    "Thursday":
+    {
+			"8" : "Japser",
+			"9" : "Japser",
+			"10": "Japser",
+			"11": "Japser",
+			"12": "Andrew",
+			"13": "Andrew",
+			"14": "Crystal",
+			"15": "Crystal",
+			"16": "Crystal"
+    },
+    "Friday":
+    {
+			"8" : "Nicole",
+			"9" : "Nicole",
+			"10": "Nicole",
+			"11": "Lindsey",
+			"12": "Lindsey",
+			"13": "Lindsey",
+			"14": "Lindsey",
+			"15": "Andrew",
+			"16": "Andrew"
+    },
+    "Saturday":
+    {
+
+    }
+  }
 }
