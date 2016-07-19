@@ -15,7 +15,6 @@ class WorkerEvent:
 
 		return retStr
 
-
 	def __getitem__(self, key):
 		if (key == 0):
 			return self.__name
