@@ -3,7 +3,8 @@ import datetime
 import os
 import json
 
-from collections import defaultdict
+
+from collections import defaultdict, OrderedDict
 from worker_event import WorkerEvent
 
 schedule = []
@@ -18,7 +19,7 @@ schedule = []
 # 	else:
 # 		return False
 
-def dayToNum(day):
+def dayStringToInt(day):
 	days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday',
 			'Thursday', 'Friday', 'Saturday']
 
@@ -35,21 +36,19 @@ class WorkerParser:
 
 		for item in os.listdir(path):
 			file = open(path + item)
-			data = json.load(file)
+			data = json.load(file, object_pairs_hook=OrderedDict)
 			location = data.keys()[0]
 			data = data[location]
 
-			for item in data:
-				for day, shifts in item.iteritems():
-					day = dayToNum(day)
+			for day in data.keys():
+				for hour in data[day].keys():
+					name = data[day][hour]
+					dayInt = dayStringToInt(day)
+					startTime = datetime.datetime.strptime(hour, '%H')
+					endTime = startTime + datetime.timedelta(hours=1)
 
-					for shift in shifts:
-						name = shift.values()[0]
-						startTime = datetime.datetime.strptime(shift.keys()[0], '%H')
-						endTime = startTime + datetime.timedelta(hours=1)
-
-						we = WorkerEvent(name, day, startTime, endTime, location)
-						workerEvents.append(we)
+					we = WorkerEvent(name, dayInt, startTime, endTime, location)
+					workerEvents.append(we)
 
 		workerEvents = self.__simplifyWorkerEvents(workerEvents)
 
