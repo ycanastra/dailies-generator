@@ -3,21 +3,8 @@ import datetime
 import os
 import json
 
-
 from collections import defaultdict, OrderedDict
 from worker_event import WorkerEvent
-
-schedule = []
-
-# def isRoom(room):
-# 	if (room == 'OPCO HSSB' or room == 'OPCO LSCF' or
-# 		room == 'Consultant SSMS' or room == 'Consultant BSIF' or
-# 		room == 'OPCO 1 PHELPS' or room == 'OPCO 2 PHELPS' or
-# 		room == 'Consultant HSSB' or room == 'Consultant LSCF' or
-# 		room == 'Consultant 1 PHELPS' or room == 'Consultant 2 PHELPS'):
-# 		return True
-# 	else:
-# 		return False
 
 def dayStringToInt(day):
 	days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday',
@@ -26,7 +13,6 @@ def dayStringToInt(day):
 	return days.index(day)
 
 class WorkerParser:
-
 	def __init__(self, path):
 		self.__path = path
 
