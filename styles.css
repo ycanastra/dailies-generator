@@ -1,0 +1,15 @@
+body {
+	padding: 20px;
+}
+input[type=text] {
+	width: 300px;
+}
+select {
+	width: 300px;
+}
+h2 {
+	font-weight: 200;
+}
+label {
+	font-weight: 200;
+}

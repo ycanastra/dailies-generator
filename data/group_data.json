@@ -1,0 +1,60 @@
+{
+	"East":
+	{
+		"Employee Locations":
+		{
+			"OPCO 1 PHELPS": "OpCo 1 Phelps",
+			"CONSULTANT 1 PHELPS": "Consultant 1 Phelps",
+			"CONSULTANT 2 PHELPS": "Consultant 2 Phelps"
+		},
+		"Labs":
+		{
+			"BSIF 1217": "BSIF 1217",
+			"LSCF 1805": "LSCF 1805",
+			"LSCF 1806": "LSCF 1806",
+			"Phelps 1513": "Phelps 1513",
+			"Phelps 1514": "Phelps 1514",
+			"Phelps 1517": "Phelps 1517",
+			"Phelps 1518": "Phelps 1518",
+			"Phelps 1525": "Phelps 1525",
+			"Phelps 1526": "Phelps 1526",
+			"Phelps 1529": "Phelps 1529",
+			"Phelps 1530": "Phelps 1530"
+		},
+		"Worksheet Format":
+		{
+			"cell_height": "24",
+			"cell_width": "12",
+			"font_size": "9",
+			"time_cell_width": "8",
+			"header_height": "23",
+			"header_font_size": "18"
+		}
+	},
+	"West":
+	{
+		"Employee Locations":
+		{
+			"OPCO 1 HSSB": "OpCo 1 HSSB",
+			"CONSULTANT 1 HSSB": "Consultant 1 HSSB"
+		},
+		"Labs":
+		{
+			"SSMS 1005": "SSMS 1005",
+			"SSMS 1007": "SSMS 1007",
+			"SSMS 1301": "SSMS 1301",
+			"SSMS 1302": "SSMS 1302",
+			"SSMS 1303": "SSMS 1303",
+			"SSMS 1304": "SSMS 1304"
+		},
+		"Worksheet Format":
+		{
+			"cell_height": "24",
+			"cell_width": "12",
+			"font_size": "9",
+			"time_cell_width": "9",
+			"header_height": "23",
+			"header_font_size": "18"
+		}
+	}
+}
