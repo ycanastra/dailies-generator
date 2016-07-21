@@ -16,13 +16,13 @@
 	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
-	<script>
+	<!-- <script>
 		$(function() {
 			$("#datepicker").datepicker();
 		});
-	</script>
+	</script> -->
 
-
+</head>
 
 <body>
 
@@ -32,25 +32,34 @@
 
 	<form method="POST" action="action.php">
 
-		<label>Name: </label>
-		<input type="text" name="name"><br><br>
+		<div name='name'>
+			<label name='name'>Name: </label>
+			<input type="text" name="name" placeholder="Joe Gaucho"><br>
+			<p class='errorMessage' name='name'>Please enter your name.</p><br>
+		</div>
 
-		<label>Date: </label>
-		<input type="text" name="date" id="datepicker" placeholder="DD/MM/YYYY"><br><br>
+		<div name='date'>
+			<label name='date'>Date: </label>
+			<input type="text" name="date" id="datepicker" placeholder="MM/DD/YYYY"><br>
+			<p class='errorMessage' name='name'>Please enter the date.</p><br>
+		</div>
 
-		<label>Location: </label>
-		<select name="group" class="selector">
-			<option value="" disabled selected>Select your option</option>
-			<option value="West">West</option>
-			<option value="East">East</option>
-		</select><br><br>
+		<div name='location'>
+			<label name='location'>Location: </label>
+			<select name="group" class="selector">
+				<option value="" disabled selected>Select your option</option>
+				<option value="West">West</option>
+				<option value="East">East</option>
+			</select><br>
+			<p class='errorMessage' name='location'>Please enter the location.</p><br>
+		</div>
 
-		<input type="submit" name="submit" value="Submit" class="btn btn-primary" id="submit">
+		<div name='submit'>
+			<input type="submit" name="submit" value="Submit" class="btn btn-primary" id="submit">
+		</div>
 
 	</form>
 
 	<script type="text/javascript" src="script.js"></script>
 
 </body>
-
-</head>
