@@ -13,7 +13,7 @@ import os
 import json
 
 def main():
-	employeeShiftsPath = './data/employee_shifts/'
+	employeeShiftsPath = './data/employee_shifts.json'
 
 	if len(sys.argv) != 4:
 		sys.exit('Need 3 arguments')

@@ -20,15 +20,13 @@ class WorkerParser:
 		path = self.__path
 		workerEvents = []
 
-		for item in os.listdir(path):
-			file = open(path + item)
-			data = json.load(file, object_pairs_hook=OrderedDict)
-			location = data.keys()[0]
-			data = data[location]
+		file = open(path)
+		data = json.load(file, object_pairs_hook=OrderedDict)
 
-			for day in data.keys():
-				for hour in data[day].keys():
-					name = data[day][hour]
+		for location in data.keys():
+			for day in data[location].keys():
+				for hour in data[location][day].keys():
+					name = data[location][day][hour]
 					dayInt = dayStringToInt(day)
 					startTime = datetime.datetime.strptime(hour, '%H')
 					endTime = startTime + datetime.timedelta(hours=1)
@@ -40,7 +38,7 @@ class WorkerParser:
 
 		return workerEvents
 
-	# TODO make this better
+	# TODO make this better. i'm sure there is a better way to do this
 	def __simplifyWorkerEvents(self, workerEvents):
 		simplifiedWE = []
 
