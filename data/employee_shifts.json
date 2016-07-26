@@ -1,12 +1,12 @@
 {
 	"OPCO 1 HSSB":
-  {
-    "Sunday":
-    {
+	{
+		"Sunday":
+		{
 
-    },
-    "Monday":
-    {
+		},
+		"Monday":
+		{
 			"8" : "Jordyn",
 			"9" : "Jordyn",
 			"10": "Jordyn",
@@ -20,9 +20,9 @@
 			"18": "Carla",
 			"19": "Carla",
 			"20": "Carla"
-    },
-    "Tuesday":
-    {
+		},
+		"Tuesday":
+		{
 			"8" : "Jordyn",
 			"9" : "Jordyn",
 			"10": "Jordyn",
@@ -36,9 +36,9 @@
 			"18": "Yushi",
 			"19": "Yushi",
 			"20": "Yushi"
-    },
-    "Wednesday":
-    {
+		},
+		"Wednesday":
+		{
 			"8" : "Jordyn",
 			"9" : "Jordyn",
 			"10": "Jordyn",
@@ -52,9 +52,9 @@
 			"18": "Carla",
 			"19": "Carla",
 			"20": "Carla"
-    },
-    "Thursday":
-    {
+		},
+		"Thursday":
+		{
 			"8" : "Wendy",
 			"9" : "Wendy",
 			"10": "Wendy",
@@ -68,9 +68,9 @@
 			"18": "Yushi",
 			"19": "Yushi",
 			"20": "Yushi"
-    },
-    "Friday":
-    {
+		},
+		"Friday":
+		{
 			"8" : "Meridian",
 			"9" : "Meridian",
 			"10": "Meridian",
@@ -80,20 +80,20 @@
 			"14": "Jordyn",
 			"15": "Meridian",
 			"16": "Meridian"
-    },
-    "Saturday":
-    {
+		},
+		"Saturday":
+		{
 
-    }
-  },
+		}
+	},
 	"OPCO 1 PHELPS":
-  {
-    "Sunday":
-    {
+	{
+		"Sunday":
+		{
 
-    },
-    "Monday":
-    {
+		},
+		"Monday":
+		{
 			"8" : "Wendy",
 			"9" : "Wendy",
 			"10": "Wendy",
@@ -103,9 +103,9 @@
 			"14": "Alx",
 			"15": "Meridian",
 			"16": "Meridian"
-    },
-    "Tuesday":
-    {
+		},
+		"Tuesday":
+		{
 			"8" : "Wendy",
 			"9" : "Wendy",
 			"10": "Carla",
@@ -115,9 +115,9 @@
 			"14": "Meridian",
 			"15": "Yushi",
 			"16": "Yushi"
-    },
-    "Wednesday":
-    {
+		},
+		"Wednesday":
+		{
 			"8" : "Meridian",
 			"9" : "Meridian",
 			"10": "Meridian",
@@ -127,9 +127,9 @@
 			"14": "Meridian",
 			"15": "Meridian",
 			"16": "Meridian"
-    },
-    "Thursday":
-    {
+		},
+		"Thursday":
+		{
 			"8" : "Jordyn",
 			"9" : "Jordyn",
 			"10": "Jordyn",
@@ -139,9 +139,9 @@
 			"14": "Carla",
 			"15": "Jordyn",
 			"16": "Jordyn"
-    },
-    "Friday":
-    {
+		},
+		"Friday":
+		{
 			"8" : "Wendy",
 			"9" : "Wendy",
 			"10": "Wendy",
@@ -151,107 +151,107 @@
 			"14": "Yushi",
 			"15": "Yushi",
 			"16": "Yushi"
-    },
-    "Saturday":
-    {
+		},
+		"Saturday":
+		{
 
-    }
-  },
+		}
+	},
 	"CONSULTANT 1 HSSB":
 	{
-    "Sunday":
-    {
+		"Sunday":
+		{
 
-    },
-    "Monday":
-    {
-      "8" : "Devyn",
-      "9" : "Devyn",
-      "10": "Devyn",
-      "11": "Chris",
-      "12": "Chris",
-      "13": "Chris",
-      "14": "Chris",
-      "15": "Kerry",
-      "16": "Kerry",
-      "17": "Kerry",
-      "18": "Teresa",
-      "19": "Teresa",
-      "20": "Teresa"
-    },
-    "Tuesday":
-    {
-      "8" : "Kerry",
-      "9" : "Kerry",
-      "10": "Andrew",
-      "11": "Andrew",
-      "12": "Andrew",
-      "13": "Andrew",
-      "14": "Chris",
-      "15": "Chris",
-      "16": "Chris",
-      "17": "Lindsey",
-      "18": "Lindsey",
-      "19": "Lindsey",
-      "20": "Lindsey"
-    },
-    "Wednesday":
-    {
-      "8" : "Devyn",
-      "9" : "Devyn",
-      "10": "Devyn",
-      "11": "Rachel",
-      "12": "Rachel",
-      "13": "Chris",
-      "14": "Chris",
-      "15": "Chris",
-      "16": "Chris",
-      "17": "Chris",
-      "18": "Kerry",
-      "19": "Kerry",
-      "20": "Kerry"
-    },
-    "Thursday":
-    {
-      "8" : "Andrew",
-      "9" : "Andrew",
-      "10": "Claire",
-      "11": "Claire",
-      "12": "Claire",
-      "13": "Lindsey",
-      "14": "Lindsey",
-      "15": "Heondo",
-      "16": "Nicole",
-      "17": "Nicole",
-      "18": "Xiaown",
-      "19": "Xiaown",
-      "20": "Xiaown"
-    },
-    "Friday":
-    {
-      "8" : "Teresa",
-      "9" : "Teresa",
-      "10": "Teresa",
-      "11": "Kerry",
-      "12": "Kerry",
-      "13": "Kerry",
-      "14": "Ben",
-      "15": "Ben",
-      "16": "Ben"
-    },
-    "Saturday":
-    {
+		},
+		"Monday":
+		{
+			"8" : "Devyn",
+			"9" : "Devyn",
+			"10": "Devyn",
+			"11": "Chris",
+			"12": "Chris",
+			"13": "Chris",
+			"14": "Chris",
+			"15": "Kerry",
+			"16": "Kerry",
+			"17": "Kerry",
+			"18": "Teresa",
+			"19": "Teresa",
+			"20": "Teresa"
+		},
+		"Tuesday":
+		{
+			"8" : "Kerry",
+			"9" : "Kerry",
+			"10": "Andrew",
+			"11": "Andrew",
+			"12": "Andrew",
+			"13": "Andrew",
+			"14": "Chris",
+			"15": "Chris",
+			"16": "Chris",
+			"17": "Lindsey",
+			"18": "Lindsey",
+			"19": "Lindsey",
+			"20": "Lindsey"
+		},
+		"Wednesday":
+		{
+			"8" : "Devyn",
+			"9" : "Devyn",
+			"10": "Devyn",
+			"11": "Rachel",
+			"12": "Rachel",
+			"13": "Chris",
+			"14": "Chris",
+			"15": "Chris",
+			"16": "Chris",
+			"17": "Chris",
+			"18": "Kerry",
+			"19": "Kerry",
+			"20": "Kerry"
+		},
+		"Thursday":
+		{
+			"8" : "Andrew",
+			"9" : "Andrew",
+			"10": "Claire",
+			"11": "Claire",
+			"12": "Claire",
+			"13": "Lindsey",
+			"14": "Lindsey",
+			"15": "Heondo",
+			"16": "Nicole",
+			"17": "Nicole",
+			"18": "Xiaown",
+			"19": "Xiaown",
+			"20": "Xiaown"
+		},
+		"Friday":
+		{
+			"8" : "Teresa",
+			"9" : "Teresa",
+			"10": "Teresa",
+			"11": "Kerry",
+			"12": "Kerry",
+			"13": "Kerry",
+			"14": "Ben",
+			"15": "Ben",
+			"16": "Ben"
+		},
+		"Saturday":
+		{
 
-    }
-  },
+		}
+	},
 	"CONSULTANT 1 PHELPS":
-  {
-    "Sunday":
-    {
+	{
+		"Sunday":
+		{
 
-    },
-    "Monday":
-    {
+		},
+		"Monday":
+		{
 			"8" : "Xiaowen",
 			"9" : "Xiaowen",
 			"10": "Xiaowen",
@@ -261,9 +261,9 @@
 			"14": "Crystal",
 			"15": "Lindsey",
 			"16": "Lindsey"
-    },
-    "Tuesday":
-    {
+		},
+		"Tuesday":
+		{
 			"8" : "Xiaowen",
 			"9" : "Xiaowen",
 			"10": "Xiaowen",
@@ -273,9 +273,9 @@
 			"14": "Teresa",
 			"15": "Teresa",
 			"16": "Teresa"
-    },
-    "Wednesday":
-    {
+		},
+		"Wednesday":
+		{
 			"8" : "Claire",
 			"9" : "Claire",
 			"10": "Claire",
@@ -285,9 +285,9 @@
 			"14": "Jasper",
 			"15": "Crystal",
 			"16": "Crystal"
-    },
-    "Thursday":
-    {
+		},
+		"Thursday":
+		{
 			"8" : "Japser",
 			"9" : "Japser",
 			"10": "Japser",
@@ -297,9 +297,9 @@
 			"14": "Crystal",
 			"15": "Crystal",
 			"16": "Crystal"
-    },
-    "Friday":
-    {
+		},
+		"Friday":
+		{
 			"8" : "Nicole",
 			"9" : "Nicole",
 			"10": "Nicole",
@@ -309,20 +309,20 @@
 			"14": "Lindsey",
 			"15": "Andrew",
 			"16": "Andrew"
-    },
-    "Saturday":
-    {
+		},
+		"Saturday":
+		{
 
-    }
-  },
+		}
+	},
 	"CONSULTANT 2 PHELPS":
-  {
-    "Sunday":
-    {
+	{
+		"Sunday":
+		{
 
-    },
-    "Monday":
-    {
+		},
+		"Monday":
+		{
 			"8" : "Heondo",
 			"9" : "Heondo",
 			"10": "Heondo",
@@ -332,9 +332,9 @@
 			"14": "Ben",
 			"15": "Ben",
 			"16": "Ben"
-    },
-    "Tuesday":
-    {
+		},
+		"Tuesday":
+		{
 			"8" : "Jasper",
 			"9" : "Jasper",
 			"10": "Jasper",
@@ -344,9 +344,9 @@
 			"14": "Rachel",
 			"15": "Rachel",
 			"16": "Ben"
-    },
-    "Wednesday":
-    {
+		},
+		"Wednesday":
+		{
 			"8" : "Crystal",
 			"9" : "Crystal",
 			"10": "Crystal",
@@ -356,9 +356,9 @@
 			"14": "Rachel",
 			"15": "Rachel",
 			"16": "Rachel"
-    },
-    "Thursday":
-    {
+		},
+		"Thursday":
+		{
 			"8" : "Xiaown",
 			"9" : "Xiaown",
 			"10": "Devyn",
@@ -368,9 +368,9 @@
 			"14": "Rachel",
 			"15": "Kerry",
 			"16": "Kerry"
-    },
-    "Friday":
-    {
+		},
+		"Friday":
+		{
 			"8" : "Ben",
 			"9" : "Ben",
 			"10": "Ben",
@@ -380,10 +380,10 @@
 			"14": "Heondo",
 			"15": "Heondo",
 			"16": "Heondo"
-    },
-    "Saturday":
-    {
+		},
+		"Saturday":
+		{
 
-    }
-  }
+		}
+	}
 }
