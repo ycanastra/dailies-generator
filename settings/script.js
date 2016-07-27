@@ -50,7 +50,7 @@ $(document).ready(function() {
 
 					var hourElem = $('<input type="number" min="0" max="23" id="' + hourId + '" class="hour">');
 					var nameElem = $('<input type="text" id="' + nameId + '" class="name">');
-					var addMoreElem = $('<button id="' + buttonId + '"class="btn add-more" type="button">+</button><br>')
+					var addMoreElem = $('<button id="' + buttonId + '"class="btn btn-danger" type="button">-</button><br>')
 
 					hourElem.val(key);
 					nameElem.val(val);
