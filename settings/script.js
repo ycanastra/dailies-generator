@@ -72,6 +72,17 @@ $(document).ready(function() {
 					nameElem.appendTo('#' + columnId);
 					addMoreElem.appendTo('#' + columnId);
 				});
+				var hourId = 'h' + dayStringToNum(day) + key;
+				var nameId = 'n' + dayStringToNum(day) + key;
+				var buttonId = 'b' + dayStringToNum(day) + key;
+
+				var hourElem = $('<input type="number" min="0" max="23" id="' + hourId + '" class="hour" placeholder="Hour">');
+				var nameElem = $('<input type="text" id="' + nameId + '" class="name" placeholder="Name">');
+				var addMoreElem = $('<button id="' + buttonId + '"class="btn btn-default" type="button">+</button><br>')
+
+				hourElem.appendTo('#' + columnId);
+				nameElem.appendTo('#' + columnId);
+				addMoreElem.appendTo('#' + columnId);
 			});
 		});
 	});

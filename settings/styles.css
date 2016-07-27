@@ -10,11 +10,11 @@ div {
 }
 input.hour {
 	height: 30px;
-	width: 35px;
+	width: 50px;
 }
 input.name {
 	height: 30px;
-	width: 85px;
+	width: 75px;
 }
 h1 {
 	display: inline-block;
@@ -23,7 +23,7 @@ input[type=submit] {
 	margin-bottom: 18px;
 	margin-left: 10px;
 }
-button.btn-danger {
+button.btn-danger, button.btn-default {
 	height: 30px;
 	width: 30px;
 	text-align: center;
