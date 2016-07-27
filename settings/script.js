@@ -1,3 +1,9 @@
+function dayStringToNum(day) {
+	var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
+							 'Saturday', 'Sunday'];
+	return days.indexOf(day);
+}
+
 $(document).ready(function() {
 	// var next = 1;
 	// $(".add-more").click(function(e){
@@ -35,18 +41,25 @@ $(document).ready(function() {
 			var newHeader = $('<h3>' + key + '</h3>');
 
 			newDiv.append(newHeader);
-
 			newDiv.appendTo('#location-tab-content');
 
 			$.each(val, function(key, val) {
 				var day = key;
+
+				var columnId = 'col' + locationId + dayStringToNum(day)
+
+				var columnElem = $('<div class="col-md-1" id="' + columnId + '"></div>');
 				var dayElem = $('<br><label class="day">' + day + '</label><br>');
-				dayElem.appendTo('#' + locationId);
+				columnElem.appendTo('#' + locationId)
+				dayElem.appendTo('#' + columnId);
+
+				console.log(columnId);
+				console.log(day);
 
 				$.each(val, function(key, val) {
-					var hourId = 'h' + day + key;
-					var nameId = 'n' + day + key;
-					var buttonId = 'b' + day + key;
+					var hourId = 'h' + dayStringToNum(day) + key;
+					var nameId = 'n' + dayStringToNum(day) + key;
+					var buttonId = 'b' + dayStringToNum(day) + key;
 
 					var hourElem = $('<input type="number" min="0" max="23" id="' + hourId + '" class="hour">');
 					var nameElem = $('<input type="text" id="' + nameId + '" class="name">');
@@ -55,9 +68,9 @@ $(document).ready(function() {
 					hourElem.val(key);
 					nameElem.val(val);
 
-					hourElem.appendTo('#' + locationId);
-					nameElem.appendTo('#' + locationId);
-					addMoreElem.appendTo('#' + locationId);
+					hourElem.appendTo('#' + columnId);
+					nameElem.appendTo('#' + columnId);
+					addMoreElem.appendTo('#' + columnId);
 				});
 			});
 		});

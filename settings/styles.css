@@ -10,11 +10,11 @@ div {
 }
 input.hour {
 	height: 30px;
-	width: 50px;
+	width: 35px;
 }
 input.name {
 	height: 30px;
-	width: 100px;
+	width: 85px;
 }
 h1 {
 	display: inline-block;
@@ -31,4 +31,9 @@ button.btn-danger {
 	border-radius: 0px;
 	margin-bottom: 2px;
 	margin-left: 0px;
+}
+.col-md-1 {
+	width: 14%;
+	margin: 0px;
+	padding: 0px;
 }
