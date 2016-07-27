@@ -1,3 +1,34 @@
 body {
-  padding: 20px;
+	width: 0px;
+	padding: 0px;
+	margin: 0px;
+}
+div {
+	width: auto;
+	padding: 0px;
+	margin: 0px;
+}
+input.hour {
+	height: 30px;
+	width: 50px;
+	margin-right: 10px;
+}
+input.name {
+	height: 30px;
+	width: 100px;
+}
+h1 {
+	display: inline-block;
+}
+input[type=submit] {
+	margin-bottom: 18px;
+	margin-left: 10px;
+}
+button.add-more {
+	height: 30px;
+	width: 30px;
+	text-align: center;
+	padding: initial;
+	border-radius: 0px;
+	margin-bottom: 2px;
 }
