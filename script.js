@@ -1,70 +1,73 @@
-$("#submit").prop("disabled", true)
-$('p.errorMessage').hide()
+$(document).ready(function() {
+	buttonEnabler();
+})
 
-$('input').on('input change', buttonEnabler)
-$('select').on('change', buttonEnabler)
+$('p.errorMessage').hide();
 
-$('select').on('change', function() {
-	if ($(this).val() != null) {
-		$(this).parent().find('p').slideUp(150)
-		$(this).css('border', '')	
+$('input').on('input change', buttonEnabler);
+$('select').on('change', buttonEnabler);
+
+$('select').blur(function() {
+	if ($(this).val() == null) {
+		showError($(this));
+	}
+	else {
+		hideError($(this));
 	}
 })
 
 $('input').on('input change', function() {
 	if ($(this).val() != '') {
-		$(this).parent().find('p').slideUp(150)
-		$(this).css('border', '')
+		hideError($(this));
 	}
-})
+});
 
 $('input').not('#datepicker').blur(function() {
 	if ($(this).val() == '') {
-		$(this).css('border', '1px solid red')
-		$(this).parent().find('p').slideDown(150)
+		showError($(this));
 	}
-})
+});
 
-$('#datepicker').datepicker({
-  onClose: function(dateText) {
-		if (dateText == '') {
-			$(this).css('border', '1px solid red')
-			$(this).parent().find('p').slideDown(150)
-		}
-		else {
-			$(this).parent().find('p').slideUp(150)
-		  $(this).css('border', '')
-		}
+$('#datepicker').datepicker().on('hide', function(event) {
+	var dateText = event.format('mm/dd/yyyy');
+	if (dateText == '') {
+		showError($(this));
 	}
-})
+	else {
+		hideError($(this));
+	}
+});
 
-$('select').blur(function() {
-	if ($(this).val() == null) {
-		$(this).css('border', '1px solid red')
-		$(this).parent().find('p').slideDown(150)
-	}
-})
+function hideError(input) {
+	input.parent().find('p').hide();
+	input.css('border', '');
+}
+
+function showError(input) {
+	input.parent().find('p').show();
+	input.css('border', '1px solid red');
+}
 
 function buttonEnabler() {
-	var inputEmpty = false
-	var selectEmpty = false
+	var inputEmpty = false;
+	var selectEmpty = false;
 
 	$('input').each(function() {
 		if ($(this).val() == '') {
-			inputEmpty = true
+			inputEmpty = true;
 		}
-	})
+	});
 
 	$('select').each(function() {
 		if ($(this).val() == null) {
-			selectEmpty = true
+			selectEmpty = true;
 		}
-	})
+	});
 
 	if (inputEmpty || selectEmpty) {
-		$('#submit').prop("disabled", true)
+		$('#submit').prop("disabled", true);
 	}
 	else {
-		$('#submit').prop("disabled", false)
+		$('#submit').prop("disabled", false);
 	}
 }

@@ -4,53 +4,43 @@
 <head>
 	<meta charset="utf-8">
 	<title>Dailies Generator</title>
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
-	<link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Roboto:300'>
-	<link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
-	<link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.1.0/milligram.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/css/bootstrap-datepicker.min.css" />
 	<link rel="stylesheet" type='text/css' href="./styles.css">
-
-	<script src="https://code.jquery.com/jquery.min.js"></script>
-
-	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
-	<!-- <script>
-		$(function() {
-			$("#datepicker").datepicker();
-		});
-	</script> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js"></script>
 
 </head>
 
 <body>
 
 	<header>
-		<h2>Dailies Generator</h2>
+		<h1>Dailies Generator</h1>
 	</header>
 
 	<form method="POST" action="action.php">
 
 		<div name='name'>
-			<label name='name'>Name: </label>
-			<input type="text" name="name" placeholder="Joe Gaucho"><br>
+			<label name='name'>Name: </label><br>
+			<input type="text" name="name" placeholder="Joe Gaucho" class="form-control">
 			<p class='errorMessage' name='name'>Please enter your name.</p><br>
 		</div>
 
 		<div name='date'>
-			<label name='date'>Date: </label>
-			<input type="text" name="date" id="datepicker" placeholder="MM/DD/YYYY"><br>
+			<label name='date'>Date: </label><br>
+			<input type="text" name="date" id="datepicker" placeholder="MM/DD/YYYY" class="form-control">
 			<p class='errorMessage' name='name'>Please enter the date.</p><br>
 		</div>
 
 		<div name='location'>
-			<label name='location'>Location: </label>
-			<select name="group" class="selector">
+			<label name='location'>Location: </label><br>
+			<select name="group" class="form-control">
 				<option value="" disabled selected>Select your option</option>
 				<option value="West">West</option>
 				<option value="East">East</option>
-			</select><br>
+			</select>
 			<p class='errorMessage' name='location'>Please enter the location.</p><br>
 		</div>
 

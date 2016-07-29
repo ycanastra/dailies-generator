@@ -1,19 +1,15 @@
 body {
 	padding: 20px;
 }
-input[type=text] {
+.form-control {
 	width: 300px;
 	margin: 0px;
 }
-select {
-	width: 300px;
-	margin: 0px;
-}
-h2 {
-	font-weight: 200;
+.datepicker table {
+	width:292px;
 }
 label {
-	font-weight: 200;
+	font-weight: lighter;
 }
 p.errorMessage {
 	color: red;
