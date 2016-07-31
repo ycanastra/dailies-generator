@@ -303,22 +303,6 @@ class WorkbookCreator:
 
 		return data[group]['Labs']
 
-
-	def getFormatData(self):
-		group = self.__group
-		path = './data/group_data.json'
-
-		file = open(path)
-		data = json.load(file)
-		data = data[group]['Worksheet Format']
-
-		self.__cellHeight = data['cell_height']
-		self.__cellWidth = data['cell_width']
-		self.__fontSize = data['font_size']
-		self.__timeCellWidth = data['time_cell_width']
-		self.__headerHeight = data['header_height']
-		self.__headerFontSize = data['header_font_size']
-
 	def addTimeTitle(self, row, col):
 		ws = self.__ws
 		wf = self.__wf
