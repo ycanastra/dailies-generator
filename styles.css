@@ -1,5 +1,8 @@
 body {
-	padding: 20px;
+	padding: 30px;
+}
+h1 {
+	margin: 0px;
 }
 .form-control {
 	width: 300px;
@@ -7,6 +10,9 @@ body {
 }
 .datepicker table {
 	width:292px;
+}
+input[type=submit] {
+	width: 300px;
 }
 label {
 	font-weight: lighter;
