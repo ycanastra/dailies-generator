@@ -3,6 +3,8 @@ import datetime
 import json
 import os
 
+from workbook_formatter import WorkbookFormatter
+
 from collections import OrderedDict
 
 from openpyxl.styles import Alignment, Font, Border
@@ -24,46 +26,7 @@ class WorkbookCreator:
 		self.__ws = self.__wb.worksheets[0]
 		self.__ws.title = group
 
-		self.__noBorder = Border(top=Side(border_style=None),
-								 bottom=Side(border_style=None),
-								 left=Side(border_style=None),
-								 right=Side(border_style=None))
-		self.__outsideBorder = Border(top=Side(border_style='thin', color='000000'),
-									  bottom=Side(border_style='thin', color='000000'),
-									  left=Side(border_style='thin', color='000000'),
-									  right=Side(border_style='thin', color='000000'))
-
-		self.__sideBorder = Border(top=Side(border_style=None, color='000000'),
-								   bottom=Side(border_style=None, color='000000'),
-								   left=Side(border_style='thin', color='000000'),
-								   right=Side(border_style='thin', color='000000'))
-
-		self.__bottomBorder = Border(top=Side(border_style=None, color='000000'),
-									 bottom=Side(border_style='thin', color='000000'),
-									 left=Side(border_style='thin', color='000000'),
-									 right=Side(border_style='thin', color='000000'))
-
-		self.__topBorder = Border(top=Side(border_style='thin', color='000000'),
-								  bottom=Side(border_style=None, color='000000'),
-								  left=Side(border_style='thin', color='000000'),
-								  right=Side(border_style='thin', color='000000'))
-
-
-		self.__whiteFill = PatternFill(fill_type='solid', start_color='FFFFFF')
-
-		self.__yellowFill = PatternFill(fill_type='solid', start_color='FFFF99')
-
-		self.__grayFill = PatternFill(fill_type='solid', start_color='404040')
-
-		self.__lightgrayFill = PatternFill(fill_type='solid', start_color='eeeeee')
-
-		self.__centerAlignment = Alignment(horizontal='center', vertical='center',
-										   wrap_text=True, shrink_to_fit=False)
-
-		self.__topAlignment = Alignment(horizontal='center', vertical='top',
-										wrap_text=True, shrink_to_fit=False)
-
-		self.getFormatData()
+		self.__wf = WorkbookFormatter(self.__ws, self.__group)
 
 	def generateWorkbook(self):
 		group = self.__group
@@ -100,8 +63,9 @@ class WorkbookCreator:
 
 	def createLabColumn(self, row, col, labNamePair):
 		ws = self.__ws
-		fontSize = self.__fontSize
-		cellWidth = self.__cellWidth
+		wf = self.__wf
+		fontSize = wf.fontSize
+		cellWidth = wf.cellWidth
 
 		labNameKey = labNamePair[0] # Lab name that shows up on online labschedule
 		labNameValue = labNamePair[1] # Lab name to display on dailies
@@ -113,9 +77,9 @@ class WorkbookCreator:
 		# LabName Title
 		currentCell = ws.cell(row=row, column=col)
 		currentCell.value = labNameValue
-		currentCell.alignment = self.__centerAlignment
+		currentCell.alignment = wf.centerAlignment
 		currentCell.font = Font(size=fontSize, bold=True)
-		currentCell.border = self.__outsideBorder
+		currentCell.border = wf.outsideBorder
 
 		scheduleEvents = [x for x in scheduleEvents if x.getLocation() == labNameKey]
 
@@ -136,8 +100,8 @@ class WorkbookCreator:
 			startRow = int((startTimeInt - 8)*2 + row + 1)
 			endRow = int((endTimeInt - 8)*2 + row)
 
-			self.setFontSize(startRow, endRow, col, fontSize)
-			self.setCenterAlignment(startRow, endRow, col)
+			wf.setFontSize(startRow, endRow, col, col, fontSize)
+			wf.setCenterAlignment(startRow, endRow, col, col)
 
 			if item.getEventName() == 'OPEN':
 				# self.setSolidFill(startRow, endRow, col, 'FFFFFF') # White
@@ -145,23 +109,23 @@ class WorkbookCreator:
 				# patternFill = PatternFill(fill_type='solid', start_color=color)
 				for i in range(startRow, endRow + 1):
 					if (i + 1)%4 < 2:
-						ws.cell(row=i, column=col).fill = self.__whiteFill
+						ws.cell(row=i, column=col).fill = wf.whiteFill
 					else:
-						ws.cell(row=i, column=col).fill = self.__lightgrayFill
+						ws.cell(row=i, column=col).fill = wf.lightgrayFill
 
-				self.setBorder(startRow, endRow, col)
+				wf.setBorder(startRow, endRow, col, col)
 				continue
 			elif item.getEventName() == 'CLOSED':
-				self.setSolidFill(startRow, endRow, col, '404040') # Gray
-				self.setBorder(startRow, endRow, col)
+				wf.setSolidFill(startRow, endRow, col, col, '404040') # Gray
+				wf.setBorder(startRow, endRow, col, col)
 				continue
 			else: # This is an actual class
-				self.setSolidFill(startRow, endRow, col, 'FFFFFF') # Yellow
-				self.setBorder(startRow, endRow, col)
+				wf.setSolidFill(startRow, endRow, col, col, 'FFFFFF') # Yellow
+				wf.setBorder(startRow, endRow, col, col)
 
 				# Making sure the event takes up enough cells to merge properly
 				if endRow - startRow >= 2:
-					self.mergeColumn(startRow, endRow - 2, col)
+					wf.setMerge(startRow, endRow - 2, col, col)
 
 				ws.cell(row=startRow, column=col).value = eventName
 
@@ -174,8 +138,9 @@ class WorkbookCreator:
 
 	def createEmployeeColumn(self, row, col, employeeLocationPair):
 		ws = self.__ws
-		fontSize = self.__fontSize
-		cellWidth = self.__cellWidth
+		wf = self.__wf
+		fontSize = wf.fontSize
+		cellWidth = wf.cellWidth
 		workerEvents = self.__workerEvents
 		day = (self.__date.weekday() + 1)%7
 
@@ -189,9 +154,9 @@ class WorkbookCreator:
 		# employeeLocation Title
 		currentCell = ws.cell(row=row, column=col)
 		currentCell.value = employeeLocationValue
-		currentCell.alignment = self.__centerAlignment
+		currentCell.alignment = wf.centerAlignment
 		currentCell.font = Font(size=fontSize, bold=True)
-		currentCell.border = self.__outsideBorder
+		currentCell.border = wf.outsideBorder
 
 		workerEvents = [x for x in workerEvents if x.getDay() == day]
 		workerEvents = [x for x in workerEvents if x.getLocation() == employeeLocationKey]
@@ -212,26 +177,27 @@ class WorkbookCreator:
 			ws.cell(row=startRow, column=col).value = name
 			ws.cell(row=endRow, column=col).value = timeString
 
-			self.setBorder(startRow, endRow, col)
-			self.setCenterAlignment(startRow, endRow, col)
-			self.setFontSize(startRow, endRow, col, fontSize)
-			self.setSolidFill(startRow, endRow, col, 'FFFFFF') # White
+			wf.setBorder(startRow, endRow, col, col)
+			wf.setCenterAlignment(startRow, endRow, col, col)
+			wf.setFontSize(startRow, endRow, col, col, fontSize)
+			wf.setSolidFill(startRow, endRow, col, col, 'FFFFFF') # White
 
-			self.setBorder(endRow + 1, ws.max_row, col)
-			self.setCenterAlignment(endRow + 1, ws.max_row, col)
-			self.setFontSize(endRow + 1, ws.max_row, col, fontSize)
-			self.setSolidFill(endRow + 1, ws.max_row, col, '404040') # Gray
+			wf.setBorder(endRow + 1, ws.max_row, col, col)
+			wf.setCenterAlignment(endRow + 1, ws.max_row, col, col)
+			wf.setFontSize(endRow + 1, ws.max_row, col, col, fontSize)
+			wf.setSolidFill(endRow + 1, ws.max_row, col, col, '404040') # Gray
 
 	def createTimeAxis(self, row, col):
 		ws = self.__ws
-		timeCellWidth = self.__timeCellWidth
-		cellHeight = self.__cellHeight
-		fontSize = self.__fontSize
+		wf = self.__wf
+		timeCellWidth = wf.timeCellWidth
+		cellHeight = wf.cellHeight
+		fontSize = wf.fontSize
 
 		self.addTimeTitle(row, col)
 
 		ws.column_dimensions[get_column_letter(col)].width = timeCellWidth
-		self.setTopAlignment(row + 1, row + 29, col)
+		wf.setTopAlignment(row + 1, row + 29, col, col)
 
 		for i in xrange(0, 29):
 			currentRow = row + i + 1
@@ -245,21 +211,22 @@ class WorkbookCreator:
 			currentCell.number_format = FORMAT_DATE_TIME1
 			currentCell.font = Font(size=fontSize)
 			if (currentRow + 1)%4 < 2:
-				currentCell.fill = self.__whiteFill
+				currentCell.fill = wf.whiteFill
 			else:
-				currentCell.fill = self.__lightgrayFill
+				currentCell.fill = wf.lightgrayFill
 
 			if i == 0:
-				currentCell.border = self.__topBorder
+				currentCell.border = wf.topBorder
 			elif i == 28:
-				currentCell.border = self.__bottomBorder
+				currentCell.border = wf.bottomBorder
 			else:
-				currentCell.border = self.__sideBorder
+				currentCell.border = wf.sideBorder
 
 	def createNotesColumn(self, row, col):
 		ws = self.__ws
-		cellHeight = self.__cellHeight
-		fontSize = self.__fontSize
+		wf = self.__wf
+		cellHeight = wf.cellHeight
+		fontSize = wf.fontSize
 
 		self.addNotesTitle(row, col)
 
@@ -274,25 +241,26 @@ class WorkbookCreator:
 			currentCell.font = Font(size=fontSize)
 
 			if (currentRow + 1)%4 < 2:
-				currentCell.fill = self.__whiteFill
+				currentCell.fill = wf.whiteFill
 			else:
-				currentCell.fill = self.__lightgrayFill
+				currentCell.fill = wf.lightgrayFill
 
 			if i == 0:
-				currentCell.border = self.__topBorder
+				currentCell.border = wf.topBorder
 			elif i == 28:
-				currentCell.border = self.__bottomBorder
+				currentCell.border = wf.bottomBorder
 			else:
-				currentCell.border = self.__sideBorder
+				currentCell.border = wf.sideBorder
 
 	def createHeader(self, row, col):
 		ws = self.__ws
+		wf = self.__wf
 		dateString = self.__date.strftime('%m/%d/%Y')
 		name = 'Name: ' + self.__name
 		group = self.__group
 
-		headerHeight = self.__headerHeight
-		headerFontSize = self.__headerFontSize
+		headerHeight = wf.headerHeight
+		headerFontSize = wf.headerFontSize
 
 		title = 'CSSC ' + group
 
@@ -300,9 +268,9 @@ class WorkbookCreator:
 		maxTitleCol = maxCol*1/3
 		maxDateCol = maxCol*2/3
 
-		self.mergeRow(row, col, maxTitleCol)
-		self.mergeRow(row, maxTitleCol + 1, maxDateCol)
-		self.mergeRow(row, maxDateCol + 1, maxCol)
+		wf.setMerge(row, row, col, maxTitleCol)
+		wf.setMerge(row, row, maxTitleCol + 1, maxDateCol)
+		wf.setMerge(row, row, maxDateCol + 1, maxCol)
 
 		ws.cell(row=row, column=col).value = title
 		ws.cell(row=row, column=maxTitleCol + 1).value = dateString
@@ -314,9 +282,7 @@ class WorkbookCreator:
 		ws.cell(row=row, column=maxTitleCol + 1).font = Font(size=headerFontSize, bold=True)
 		ws.cell(row=row, column=maxDateCol + 1).font = Font(size=headerFontSize, bold=True)
 
-		self.setCenterAlignment(row, row, col)
-		self.setCenterAlignment(row, row, maxTitleCol + 1)
-		self.setCenterAlignment(row, row, maxDateCol + 1)
+		wf.setCenterAlignment(row, row, col, maxDateCol + 1)
 
 
 	def getEmployeeLocations(self):
@@ -353,73 +319,32 @@ class WorkbookCreator:
 		self.__headerHeight = data['header_height']
 		self.__headerFontSize = data['header_font_size']
 
-	def setBorder(self, startRow, endRow, column):
-		ws = self.__ws
-		if startRow == endRow:
-			ws.cell(row=startRow, column=column).border = self.__outsideBorder
-		else:
-			ws.cell(row=startRow, column=column).border = self.__topBorder
-			ws.cell(row=endRow, column=column).border = self.__bottomBorder
-
-			for i in range(startRow + 1, endRow):
-				ws.cell(row=i, column=column).border = self.__sideBorder
-
-	def setSolidFill(self, startRow, endRow, column, color):
-		ws = self.__ws
-		patternFill = PatternFill(fill_type='solid', start_color=color)
-		for i in range(startRow, endRow + 1):
-			ws.cell(row=i, column=column).fill = patternFill
-
-	def setFontSize(self, startRow, endRow, column, fontSize):
-		ws = self.__ws
-		for i in range(startRow, endRow + 1):
-			ws.cell(row=i, column=column).font = Font(size=fontSize)
-
-	def setCenterAlignment(self, startRow, endRow, column):
-		ws = self.__ws
-		for i in range(startRow, endRow + 1):
-			ws.cell(row=i, column=column).alignment = self.__centerAlignment
-
-	def setTopAlignment(self, startRow, endRow, column):
-		ws = self.__ws
-		for i in range(startRow, endRow + 1):
-			ws.cell(row=i, column=column).alignment = self.__topAlignment
-
-	def mergeColumn(self, startRow, endRow, column):
-		ws = self.__ws
-
-		ws.merge_cells(start_row=startRow, start_column=column, end_row=endRow,
-					   end_column=column)
-
-	def mergeRow(self, row, startCol, endCol):
-		ws = self.__ws
-
-		ws.merge_cells(start_row=row, start_column=startCol, end_row=row,
-					   end_column=endCol)
-
 	def addTimeTitle(self, row, col):
 		ws = self.__ws
-		fontSize = self.__fontSize
-		cellHeight = self.__cellHeight
+		wf = self.__wf
+		fontSize = wf.fontSize
+		cellHeight = wf.cellHeight
+		group = self.__group
 
 		ws.row_dimensions[row].height = cellHeight
 
 		timeCell = ws.cell(row=row, column=col)
 		timeCell.value = 'Time'
-		timeCell.alignment = self.__centerAlignment
+		timeCell.alignment = wf.centerAlignment
 		timeCell.font = Font(size=fontSize, bold=True)
-		timeCell.border = self.__outsideBorder
+		timeCell.border = wf.outsideBorder
 
 
 	def addNotesTitle(self, row, col):
 		ws = self.__ws
-		fontSize = self.__fontSize
+		wf = self.__wf
+		fontSize = wf.fontSize
 
 		notesCell = ws.cell(row=row, column=col)
 		notesCell.value = 'Notes'
-		notesCell.alignment = self.__centerAlignment
+		notesCell.alignment = wf.centerAlignment
 		notesCell.font = Font(size=fontSize, bold=True)
-		notesCell.border = self.__outsideBorder
+		notesCell.border = wf.outsideBorder
 
 def shortenTeacherName(teacherName):
 	if teacherName == 'To Be Determined':
