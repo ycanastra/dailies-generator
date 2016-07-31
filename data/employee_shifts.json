@@ -7,11 +7,11 @@
 		},
 		"Monday":
 		{
-			"8" : "Wendy",
-			"9" : "Wendy",
-			"10": "Wendy",
-			"11": "Wendy",
-			"12": "Wendy",
+			"8" : "Yushi",
+			"9" : "Yushi",
+			"10": "Yushi",
+			"11": "Yushi",
+			"12": "Yushi",
 			"13": "Open",
 			"14": "Yushi",
 			"15": "Yushi",
@@ -29,13 +29,13 @@
 			"11": "Athena",
 			"12": "Carla",
 			"13": "Carla",
-			"14": "Open",
-			"15": "Open",
-			"16": "Yushi",
-			"17": "Yushi",
-			"18": "Yushi",
-			"19": "Yushi",
-			"20": "Yushi"
+			"14": "Athena",
+			"15": "Athena",
+			"16": "Wendy",
+			"17": "Wendy",
+			"18": "Wendy",
+			"19": "Wendy",
+			"20": "Wendy"
 		},
 		"Wednesday":
 		{
@@ -46,8 +46,8 @@
 			"12": "Athena",
 			"13": "Open",
 			"14": "Open",
-			"15": "Open",
-			"16": "Open",
+			"15": "Athena",
+			"16": "Athena",
 			"17": "Carla",
 			"18": "Carla",
 			"19": "Carla",
@@ -135,7 +135,7 @@
 			"10": "Athena",
 			"11": "Athena",
 			"12": "Athena",
-			"13": "Open",
+			"13": "Athena",
 			"14": "Meridian",
 			"15": "Meridian",
 			"16": "Meridian"
