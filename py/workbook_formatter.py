@@ -64,6 +64,7 @@ class WorkbookFormatter:
 		self.headerHeight = data['header_height']
 		self.headerFontSize = data['header_font_size']
 
+	# TODO fix so it works when sCol!=eCol
 	def setBorder(self, sRow, eRow, sCol, eCol):
 		ws = self.ws
 		if sRow == eRow:
