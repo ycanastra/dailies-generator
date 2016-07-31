@@ -36,8 +36,7 @@ class WorkbookCreator:
 		currentColumn = 1
 		currentRow = 2
 
-		self.createTimeAxis(currentRow, currentColumn)
-
+		self.createTimeColumn(currentRow, currentColumn)
 		currentColumn += 1
 
 		for key, value in labLocations.iteritems():
@@ -48,8 +47,7 @@ class WorkbookCreator:
 			self.createEmployeeColumn(currentRow, currentColumn, (key, value))
 			currentColumn += 1
 
-		self.createTimeAxis(currentRow, currentColumn)
-
+		self.createTimeColumn(currentRow, currentColumn)
 		currentColumn += 1
 
 		self.createNotesColumn(currentRow, currentColumn)
@@ -57,7 +55,7 @@ class WorkbookCreator:
 		currentRow = 1
 		currentColumn = 1
 
-		self.createHeader(currentRow, currentColumn)
+		self.createTitle(currentRow, currentColumn)
 
 		self.__wb.save(group + '.xlsx')
 
@@ -75,11 +73,7 @@ class WorkbookCreator:
 		ws.column_dimensions[get_column_letter(col)].width = cellWidth
 
 		# LabName Title
-		currentCell = ws.cell(row=row, column=col)
-		currentCell.value = labNameValue
-		currentCell.alignment = wf.centerAlignment
-		currentCell.font = Font(size=fontSize, bold=True)
-		currentCell.border = wf.outsideBorder
+		self.createHeader(row, col, labNameValue)
 
 		scheduleEvents = [x for x in scheduleEvents if x.getLocation() == labNameKey]
 
@@ -152,11 +146,7 @@ class WorkbookCreator:
 		ws.column_dimensions[get_column_letter(col)].width = cellWidth
 
 		# employeeLocation Title
-		currentCell = ws.cell(row=row, column=col)
-		currentCell.value = employeeLocationValue
-		currentCell.alignment = wf.centerAlignment
-		currentCell.font = Font(size=fontSize, bold=True)
-		currentCell.border = wf.outsideBorder
+		self.createHeader(row, col, employeeLocationValue)
 
 		workerEvents = [x for x in workerEvents if x.getDay() == day]
 		workerEvents = [x for x in workerEvents if x.getLocation() == employeeLocationKey]
@@ -187,14 +177,14 @@ class WorkbookCreator:
 			wf.setFontSize(endRow + 1, ws.max_row, col, col, fontSize)
 			wf.setSolidFill(endRow + 1, ws.max_row, col, col, '404040') # Gray
 
-	def createTimeAxis(self, row, col):
+	def createTimeColumn(self, row, col):
 		ws = self.__ws
 		wf = self.__wf
 		timeCellWidth = wf.timeCellWidth
 		cellHeight = wf.cellHeight
 		fontSize = wf.fontSize
 
-		self.addTimeTitle(row, col)
+		self.createHeader(row, col, 'Time')
 
 		ws.column_dimensions[get_column_letter(col)].width = timeCellWidth
 		wf.setTopAlignment(row + 1, row + 29, col, col)
@@ -228,7 +218,7 @@ class WorkbookCreator:
 		cellHeight = wf.cellHeight
 		fontSize = wf.fontSize
 
-		self.addNotesTitle(row, col)
+		self.createHeader(row, col, 'Notes')
 
 		# ws.column_dimensions[get_column_letter(col)].width = timeCellWidth
 
@@ -252,7 +242,23 @@ class WorkbookCreator:
 			else:
 				currentCell.border = wf.sideBorder
 
-	def createHeader(self, row, col):
+	def createHeader(self, row, col, headerText):
+		ws = self.__ws
+		wf = self.__wf
+		fontSize = wf.fontSize
+		cellHeight = wf.cellHeight
+		group = self.__group
+
+		ws.row_dimensions[row].height = cellHeight
+
+		timeCell = ws.cell(row=row, column=col)
+		timeCell.value = headerText
+		timeCell.alignment = wf.centerAlignment
+		timeCell.font = Font(size=fontSize, bold=True)
+		timeCell.border = wf.outsideBorder
+
+
+	def createTitle(self, row, col):
 		ws = self.__ws
 		wf = self.__wf
 		dateString = self.__date.strftime('%m/%d/%Y')
@@ -302,33 +308,6 @@ class WorkbookCreator:
 		data = json.load(file, object_pairs_hook=OrderedDict)
 
 		return data[group]['Labs']
-
-	def addTimeTitle(self, row, col):
-		ws = self.__ws
-		wf = self.__wf
-		fontSize = wf.fontSize
-		cellHeight = wf.cellHeight
-		group = self.__group
-
-		ws.row_dimensions[row].height = cellHeight
-
-		timeCell = ws.cell(row=row, column=col)
-		timeCell.value = 'Time'
-		timeCell.alignment = wf.centerAlignment
-		timeCell.font = Font(size=fontSize, bold=True)
-		timeCell.border = wf.outsideBorder
-
-
-	def addNotesTitle(self, row, col):
-		ws = self.__ws
-		wf = self.__wf
-		fontSize = wf.fontSize
-
-		notesCell = ws.cell(row=row, column=col)
-		notesCell.value = 'Notes'
-		notesCell.alignment = wf.centerAlignment
-		notesCell.font = Font(size=fontSize, bold=True)
-		notesCell.border = wf.outsideBorder
 
 def shortenTeacherName(teacherName):
 	if teacherName == 'To Be Determined':
