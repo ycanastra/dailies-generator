@@ -57,12 +57,34 @@ class WorkbookFormatter:
 		data = json.load(file)
 		data = data[group]['Worksheet Format']
 
+		self.titleCellHeight = data['Title']['cell_height']
+		self.titleFont = data['Title']['font']
+		self.titleFontSize = data['Title']['font_size']
+		self.titleFontBold = data['Title']['font_bold']
+
+		self.headerCellHeight = data['Header']['cell_height']
+		self.headerFont = data['Header']['font']
+		self.headerFontSize = data['Header']['font_size']
+		self.headerFontBold = data['Header']['font_bold']
+
+		self.timeCellWidth = data['Time Column']['cell_width']
+		self.timeFont = data['Time Column']['font']
+		self.timeFontSize = data['Time Column']['font_size']
+		self.timeFontBold = data['Time Column']['font_bold']
+
+		self.labCellWidth = data['Lab Column']['cell_width']
+		self.labFont = data['Lab Column']['font']
+		self.labFontSize = data['Lab Column']['font_size']
+		self.labFontBold = data['Lab Column']['font_bold']
+
+		self.employeeCellWidth = data['Employee Column']['cell_width']
+		self.employeeFont = data['Employee Column']['font']
+		self.employeeFontSize = data['Employee Column']['font_size']
+		self.employeeFontBold = data['Employee Column']['font_bold']
+
+		self.notesCellWidth = data['Notes Column']['cell_width']
+
 		self.cellHeight = data['cell_height']
-		self.cellWidth = data['cell_width']
-		self.fontSize = data['font_size']
-		self.timeCellWidth = data['time_cell_width']
-		self.headerHeight = data['header_height']
-		self.headerFontSize = data['header_font_size']
 
 	# TODO fix so it works when sCol!=eCol
 	def setBorder(self, sRow, eRow, sCol, eCol):

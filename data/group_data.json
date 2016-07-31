@@ -23,12 +23,40 @@
 		},
 		"Worksheet Format":
 		{
-			"cell_height": "30",
-			"cell_width": "12",
-			"font_size": "11",
-			"time_cell_width": "9",
-			"header_height": "23",
-			"header_font_size": "18"
+			"Title" : {
+				"cell_height": "24",
+				"font": "Calibri",
+				"font_size": "20",
+				"font_bold": true
+			},
+			"Header": {
+				"cell_height": "30",
+				"font": "Calibri",
+				"font_size": "11",
+				"font_bold": true
+			},
+			"Time Column": {
+				"cell_width": "9",
+				"font": "Calibri",
+				"font_size": "11",
+				"font_bold": false
+			},
+			"Lab Column": {
+				"cell_width": "12",
+				"font": "Calibri",
+				"font_size": "11",
+				"font_bold": false
+			},
+			"Employee Column": {
+				"cell_width": "12",
+				"font": "Calibri",
+				"font_size": "11",
+				"font_bold": false
+			},
+			"Notes Column": {
+				"cell_width": "12"
+			},
+			"cell_height": "30"
 		}
 	},
 	"West":
@@ -49,12 +77,40 @@
 		},
 		"Worksheet Format":
 		{
-			"cell_height": "24",
-			"cell_width": "12",
-			"font_size": "9",
-			"time_cell_width": "9",
-			"header_height": "23",
-			"header_font_size": "18"
+			"Title" : {
+				"cell_height": "24",
+				"font": "Calibri",
+				"font_size": "20",
+				"font_bold": true
+			},
+			"Header": {
+				"cell_height": "30",
+				"font": "Calibri",
+				"font_size": "11",
+				"font_bold": true
+			},
+			"Time Column": {
+				"cell_width": "9",
+				"font": "Calibri",
+				"font_size": "11",
+				"font_bold": false
+			},
+			"Lab Column": {
+				"cell_width": "12",
+				"font": "Calibri",
+				"font_size": "11",
+				"font_bold": false
+			},
+			"Employee Column": {
+				"cell_width": "12",
+				"font": "Calibri",
+				"font_size": "11",
+				"font_bold": false
+			},
+			"Notes Column": {
+				"cell_width": "12"
+			},
+			"cell_height": "30"
 		}
 	}
 }

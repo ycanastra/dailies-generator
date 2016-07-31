@@ -28,6 +28,7 @@ class WorkbookCreator:
 
 		self.__wf = WorkbookFormatter(self.__ws, self.__group)
 
+	# TODO use font in group_data.json
 	def generateWorkbook(self):
 		group = self.__group
 		labLocations = self.getLabLocations()
@@ -62,8 +63,8 @@ class WorkbookCreator:
 	def createLabColumn(self, row, col, labNamePair):
 		ws = self.__ws
 		wf = self.__wf
-		fontSize = wf.fontSize
-		cellWidth = wf.cellWidth
+		fontSize = wf.labFontSize
+		cellWidth = wf.labCellWidth
 
 		labNameKey = labNamePair[0] # Lab name that shows up on online labschedule
 		labNameValue = labNamePair[1] # Lab name to display on dailies
@@ -133,8 +134,8 @@ class WorkbookCreator:
 	def createEmployeeColumn(self, row, col, employeeLocationPair):
 		ws = self.__ws
 		wf = self.__wf
-		fontSize = wf.fontSize
-		cellWidth = wf.cellWidth
+		fontSize = wf.employeeFontSize
+		cellWidth = wf.employeeCellWidth
 		workerEvents = self.__workerEvents
 		day = (self.__date.weekday() + 1)%7
 
@@ -180,13 +181,13 @@ class WorkbookCreator:
 	def createTimeColumn(self, row, col):
 		ws = self.__ws
 		wf = self.__wf
-		timeCellWidth = wf.timeCellWidth
+		cellWidth = wf.timeCellWidth
 		cellHeight = wf.cellHeight
-		fontSize = wf.fontSize
+		fontSize = wf.timeFontSize
 
 		self.createHeader(row, col, 'Time')
 
-		ws.column_dimensions[get_column_letter(col)].width = timeCellWidth
+		ws.column_dimensions[get_column_letter(col)].width = cellWidth
 		wf.setTopAlignment(row + 1, row + 29, col, col)
 
 		for i in xrange(0, 29):
@@ -215,20 +216,15 @@ class WorkbookCreator:
 	def createNotesColumn(self, row, col):
 		ws = self.__ws
 		wf = self.__wf
-		cellHeight = wf.cellHeight
-		fontSize = wf.fontSize
+		cellWidth = wf.notesCellWidth
 
 		self.createHeader(row, col, 'Notes')
 
-		# ws.column_dimensions[get_column_letter(col)].width = timeCellWidth
+		ws.column_dimensions[get_column_letter(col)].width = cellWidth
 
 		for i in xrange(0, 29):
 			currentRow = row + i + 1
 			currentCell = ws.cell(row=currentRow, column=col)
-
-			ws.row_dimensions[currentRow].height = cellHeight
-
-			currentCell.font = Font(size=fontSize)
 
 			if (currentRow + 1)%4 < 2:
 				currentCell.fill = wf.whiteFill
@@ -245,8 +241,8 @@ class WorkbookCreator:
 	def createHeader(self, row, col, headerText):
 		ws = self.__ws
 		wf = self.__wf
-		fontSize = wf.fontSize
-		cellHeight = wf.cellHeight
+		fontSize = wf.headerFontSize
+		cellHeight = wf.headerCellHeight
 		group = self.__group
 
 		ws.row_dimensions[row].height = cellHeight
@@ -265,7 +261,7 @@ class WorkbookCreator:
 		name = 'Name: ' + self.__name
 		group = self.__group
 
-		headerHeight = wf.headerHeight
+		headerHeight = wf.headerCellHeight
 		headerFontSize = wf.headerFontSize
 
 		title = 'CSSC ' + group
