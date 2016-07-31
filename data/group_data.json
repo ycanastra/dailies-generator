@@ -23,10 +23,10 @@
 		},
 		"Worksheet Format":
 		{
-			"cell_height": "24",
+			"cell_height": "30",
 			"cell_width": "12",
-			"font_size": "9",
-			"time_cell_width": "8",
+			"font_size": "11",
+			"time_cell_width": "9",
 			"header_height": "23",
 			"header_font_size": "18"
 		}
