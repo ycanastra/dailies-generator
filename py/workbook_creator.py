@@ -206,13 +206,8 @@ class WorkbookCreator:
 			else:
 				currentCell.fill = wf.lightgrayFill
 
-			if i == 0:
-				currentCell.border = wf.topBorder
-			elif i == 28:
-				currentCell.border = wf.bottomBorder
-			else:
-				currentCell.border = wf.sideBorder
-
+		wf.setBorder(row + 1, row + 29, col, col)
+		
 	def createNotesColumn(self, row, col):
 		ws = self.__ws
 		wf = self.__wf
@@ -261,8 +256,8 @@ class WorkbookCreator:
 		name = 'Name: ' + self.__name
 		group = self.__group
 
-		headerHeight = wf.headerCellHeight
-		headerFontSize = wf.headerFontSize
+		titleCellHeight = wf.titleCellHeight
+		titleFontSize = wf.titleFontSize
 
 		title = 'CSSC ' + group
 
@@ -278,11 +273,11 @@ class WorkbookCreator:
 		ws.cell(row=row, column=maxTitleCol + 1).value = dateString
 		ws.cell(row=row, column=maxDateCol + 1).value = name
 
-		ws.row_dimensions[row].height = headerHeight
+		ws.row_dimensions[row].height = titleCellHeight
 
-		ws.cell(row=row, column=col).font = Font(size=headerFontSize, bold=True)
-		ws.cell(row=row, column=maxTitleCol + 1).font = Font(size=headerFontSize, bold=True)
-		ws.cell(row=row, column=maxDateCol + 1).font = Font(size=headerFontSize, bold=True)
+		ws.cell(row=row, column=col).font = Font(size=titleFontSize, bold=True)
+		ws.cell(row=row, column=maxTitleCol + 1).font = Font(size=titleFontSize, bold=True)
+		ws.cell(row=row, column=maxDateCol + 1).font = Font(size=titleFontSize, bold=True)
 
 		wf.setCenterAlignment(row, row, col, maxDateCol + 1)
 
