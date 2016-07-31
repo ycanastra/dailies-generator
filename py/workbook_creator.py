@@ -11,6 +11,7 @@ from openpyxl.styles import Alignment, Font, Border
 from openpyxl.styles.numbers import FORMAT_DATE_TIME1
 from openpyxl.styles.borders import Side
 from openpyxl.styles.fills import PatternFill
+from openpyxl.worksheet.page import PageMargins
 from openpyxl.utils import get_column_letter
 
 class WorkbookCreator:
@@ -57,6 +58,8 @@ class WorkbookCreator:
 		currentColumn = 1
 
 		self.createTitle(currentRow, currentColumn)
+
+		self.setPrintSettings()
 
 		self.__wb.save(group + '.xlsx')
 
@@ -207,7 +210,7 @@ class WorkbookCreator:
 				currentCell.fill = wf.lightgrayFill
 
 		wf.setBorder(row + 1, row + 29, col, col)
-		
+
 	def createNotesColumn(self, row, col):
 		ws = self.__ws
 		wf = self.__wf
@@ -226,12 +229,7 @@ class WorkbookCreator:
 			else:
 				currentCell.fill = wf.lightgrayFill
 
-			if i == 0:
-				currentCell.border = wf.topBorder
-			elif i == 28:
-				currentCell.border = wf.bottomBorder
-			else:
-				currentCell.border = wf.sideBorder
+		wf.setBorder(row + 1, row + 29, col, col)
 
 	def createHeader(self, row, col, headerText):
 		ws = self.__ws
@@ -280,6 +278,16 @@ class WorkbookCreator:
 		ws.cell(row=row, column=maxDateCol + 1).font = Font(size=titleFontSize, bold=True)
 
 		wf.setCenterAlignment(row, row, col, maxDateCol + 1)
+
+	def setPrintSettings(self):
+		ws = self.__ws
+		ws.print_options.horizontalCentered = True
+		ws.print_options.verticalCentered = True
+
+		ws.page_margins = PageMargins(left=.5, right=.5, top=.5, bottom=.5, header=0, footer=0)
+
+		ws.page_setup.orientation = ws.ORIENTATION_LANDSCAPE
+		ws.sheet_properties.pageSetUpPr.fitToPage = True
 
 
 	def getEmployeeLocations(self):
