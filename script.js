@@ -28,7 +28,9 @@ $('input').not('#datepicker').blur(function() {
 	}
 });
 
-$('#datepicker').datepicker().on('hide', function(event) {
+$('#datepicker').datepicker({
+	autoclose: true
+}).on('hide', function(event) {
 	var dateText = event.format('mm/dd/yyyy');
 	if (dateText == '') {
 		showError($(this));
