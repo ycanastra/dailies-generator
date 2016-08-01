@@ -61,7 +61,7 @@ class WorkbookCreator:
 
 		self.setPrintSettings()
 
-		self.__wb.save(group + '.xlsx')
+		self.__wb.save('generated_dailies/' + group + '.xlsx')
 
 	def createLabColumn(self, row, col, labNamePair):
 		ws = self.__ws
