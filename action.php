@@ -9,7 +9,13 @@
 	$name = escapeshellarg($name);
 	$group = escapeshellarg($group);
 
-	$output = shell_exec('python ./py/main.py ' .$name .' ' .$group .' ' .$date);
-	header('Location: http://159.203.229.225/dailies_new/' .$filename);
+	exec('python ./py/main.py ' .$name .' ' .$group .' ' .$date, $output, $return);
 
+	if ($return == 0) {
+		header('Location: http://159.203.229.225/dailies_new/' .$filename);
+	}
+	else {
+		echo "The program failed to run. Please go back and try again.";
+	}
+	
 ?>
