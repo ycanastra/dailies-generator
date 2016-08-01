@@ -1,8 +1,17 @@
 $(document).ready(function() {
 	buttonEnabler();
-})
+	$('p.errorMessage').hide();
 
-$('p.errorMessage').hide();
+
+	var url = 'http://159.203.229.225/dailies_new/data/group_data.json'
+
+	$.getJSON(url, function(data) {
+		$.each(data, function(key, val) {
+			var groupOption = $('<option value="' + key + '">' + key + '</option>');
+			groupOption.appendTo('select');
+		});
+	});
+})
 
 $('input').on('input change', buttonEnabler);
 $('select').on('change', buttonEnabler);

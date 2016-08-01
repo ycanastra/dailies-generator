@@ -11,9 +11,6 @@ h1 {
 .datepicker table {
 	width:292px;
 }
-input[type=submit] {
-	width: 300px;
-}
 label {
 	font-weight: lighter;
 }
