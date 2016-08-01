@@ -2,7 +2,6 @@ $(document).ready(function() {
 	buttonEnabler();
 	$('p.errorMessage').hide();
 
-
 	var url = 'http://159.203.229.225/dailies_new/data/group_data.json'
 
 	$.getJSON(url, function(data) {
