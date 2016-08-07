@@ -67,6 +67,20 @@ function addEntry(columnId, day, hour, name) {
 			type: BootstrapDialog.TYPE_DANGER
 		});
 	}
+	else if (!hour) {
+		BootstrapDialog.show({
+			message: 'Please type in an hour',
+			title: "Error",
+			type: BootstrapDialog.TYPE_DANGER
+		});
+	}
+	else if (!name) {
+		BootstrapDialog.show({
+			message: 'Please type in a name',
+			title: "Error",
+			type: BootstrapDialog.TYPE_DANGER
+		});
+	}
 	else if (hourInt < 0 || hourInt > 23) {
 		BootstrapDialog.show({
 			message: 'Hour ' + hour + ' is not between 0 - 23',
