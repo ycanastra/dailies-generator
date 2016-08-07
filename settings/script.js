@@ -13,6 +13,7 @@ function padHour(hour) {
 
 
 $(document).ready(function() {
+	init();
 	$('body').on('click', '.minus', function() {
 		removeEntry($(this));
 	});
@@ -131,7 +132,7 @@ function removeEmptyEntry(columnId) {
 	div.remove();
 }
 
-$(document).ready(function() {
+function init() {
 	var url = 'http://159.203.229.225/dailies_new/data/employee_shifts.json'
 
 	$.getJSON(url, function(data) {
@@ -163,4 +164,4 @@ $(document).ready(function() {
 			});
 		});
 	});
-});
+}
