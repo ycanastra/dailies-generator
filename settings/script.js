@@ -167,6 +167,17 @@ function addEntry(columnId, day, hour, name) {
 	}
 }
 
+function addPlusTab() {
+	var newTab = $('<li><a data-toggle="tab" href="#">' + '+' + '</a></li>');
+	newTab.appendTo('#location-tab');
+
+	// var newDiv = $('<div id="' + locationId + '" class="tab-pane fade"></div>');
+	// var newHeader = $('<h3>' + key + '</h3>');
+
+	// newDiv.append(newHeader);
+	// newDiv.appendTo('#location-tab-content');
+}
+
 function addEmptyEntry(columnId) {
 	var hourInput = $('<input type="number" min="0" max="23" class="hour" placeholder="Hour" list="names-list">');
 	var nameInput = $('<input type="text" class="name" placeholder="Name">');
@@ -233,6 +244,7 @@ function init() {
 		$('input[type=text]').typeahead({
 			source: names
 		});
+		addPlusTab()
 	});
 
 	// for (let item of names) {
