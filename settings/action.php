@@ -6,7 +6,7 @@
 
 	$json = json_encode($json);
 
-	$file = fopen('test.txt','w+');
+	$file = fopen('../data/employee_shifts.json','w+');
 	fwrite($file, $json);
 	fclose($file);
 	echo $json;

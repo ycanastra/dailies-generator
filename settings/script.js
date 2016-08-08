@@ -44,19 +44,32 @@ $(document).ready(function() {
 function createJSON() {
 	var locations = []
 	var json = {}
-	$('div').each(function(i) {
+	$('div').each(function() {
 		if ($(this).hasClass('tab-pane')) {
 			var locationName = $(this).find('h3').html();
-			locations.push(locationName);
+			var columns = $(this).find('.col-md-1');
+			json[locationName] = {};
+			$.each(columns, function(index, columnDiv) {
+				var day = $(columnDiv).find('label').html();
+				var entries = $(columnDiv).find('div');
+				// json[locationName] = day;
+				json[locationName][day] = {};
+				$.each(entries, function(index, entry) {
+					if (!$(entry).hasClass('empty-entry')) {
+						var hourInput = $(entry).find('input[type=number]')
+						var nameInput = $(entry).find('input[type=text]')
+
+						var hourVal = hourInput.val();
+						var nameVal = nameInput.val();
+
+						json[locationName][day][hourVal] = nameVal;
+					}
+				});
+			});
 		}
 	});
-	for (var i = 0; i < locations.length; i++) {
-		json[locations[i]] = i;
-	}
-	console.log(JSON.stringify(json));
 
-	var pathname = window.location.pathname; // Returns path only
-	var url      = window.location.href;
+	var pathname = window.location.pathname;
 
   $.ajax({
       url: pathname + 'action.php',
@@ -69,9 +82,6 @@ function createJSON() {
 				console.log('error i guess?');
 			}
   });
-	// for (var i = 0; i < locations.length; i++) {
-	// 	console.log(locations[i]);
-	// }
 }
 
 function sort(columnId) {
@@ -178,6 +188,7 @@ function removeEmptyEntry(columnId) {
 
 function init() {
 	var url = 'http://159.203.229.225/dailies_new/data/employee_shifts.json'
+	var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 	$.getJSON(url, function(data) {
 		$.each(data, function(key, val) {
@@ -191,9 +202,8 @@ function init() {
 			newDiv.append(newHeader);
 			newDiv.appendTo('#location-tab-content');
 
-			$.each(val, function(key, val) {
-				var day = key;
-
+			for (var i = 0; i < days.length; i++) {
+				var day = days[i];
 				var columnId = 'col' + locationId + 'day-' + dayStringToNum(day);
 
 				var columnElem = $('<div class="col-md-1" id="' + columnId + '"></div>');
@@ -201,11 +211,13 @@ function init() {
 				columnElem.appendTo('#' + locationId);
 				dayElem.appendTo('#' + columnId);
 
-				$.each(val, function(key, val) {
-					addEntry(columnId, day, key, val);
-				});
+				if (val[day] != undefined) {
+					$.each(val[day], function(key, val) {
+						addEntry(columnId, day, key, val);
+					});
+				}
 				addEmptyEntry(columnId);
-			});
+			}
 		});
 	});
 }
