@@ -11,7 +11,7 @@ function padHour(hour) {
 	return ans;
 }
 
-
+namesList = []
 
 $(document).ready(function() {
 	init();
@@ -52,7 +52,6 @@ function createJSON() {
 			$.each(columns, function(index, columnDiv) {
 				var day = $(columnDiv).find('label').html();
 				var entries = $(columnDiv).find('div');
-				// json[locationName] = day;
 				json[locationName][day] = {};
 				$.each(entries, function(index, entry) {
 					if (!$(entry).hasClass('empty-entry')) {
@@ -71,17 +70,17 @@ function createJSON() {
 
 	var pathname = window.location.pathname;
 
-  $.ajax({
-      url: pathname + 'action.php',
-      type: 'POST',
-      data: {'json': json},
+	$.ajax({
+			url: pathname + 'action.php',
+			type: 'POST',
+			data: {'json': json},
 			success: function() {
 				console.log('success i guess?');
 			},
 			error: function(e){
 				console.log('error i guess?');
 			}
-  });
+	});
 }
 
 function sort(columnId) {
@@ -162,15 +161,23 @@ function addEntry(columnId, day, hour, name) {
 		divElem.appendTo('#' + columnId);
 		sort(columnId);
 
+		if (namesList.indexOf(name) == -1) {
+			namesList.push(name);
+		}
 	}
 }
 
 function addEmptyEntry(columnId) {
-	var hourInput = $('<input type="number" min="0" max="23" class="hour" placeholder="Hour">');
+	var hourInput = $('<input type="number" min="0" max="23" class="hour" placeholder="Hour" list="names-list">');
 	var nameInput = $('<input type="text" class="name" placeholder="Name">');
 	var plusButton = $('<button class="btn btn-default plus" type="button">+</button><br>');
 
 	var div = $('<div class="empty-entry" id="' + 'empty-' + columnId + '"></div>');
+
+	nameInput.typeahead({
+		source: namesList,
+		fitToElement: true
+	});
 
 	hourInput.appendTo(div);
 	nameInput.appendTo(div);
@@ -187,8 +194,11 @@ function removeEmptyEntry(columnId) {
 }
 
 function init() {
-	var url = 'http://159.203.229.225/dailies_new/data/employee_shifts.json'
+	var pathname = window.location.pathname;
+	var url = '../data/employee_shifts.json'
 	var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+	var names = []
 
 	$.getJSON(url, function(data) {
 		$.each(data, function(key, val) {
@@ -219,5 +229,24 @@ function init() {
 				addEmptyEntry(columnId);
 			}
 		});
+
+		$('input[type=text]').typeahead({
+			source: names
+		});
 	});
+
+	// for (let item of names) {
+	// 	console.log(item);
+	// }
+	// console.log(names.has('Emily'));
+	//
+	// for (let item of names) {
+	// 	console.log(item);
+	// }
+	//
+	// for (var i = 0; i < names.length; i++) {
+	// 	console.log(names[i]);
+	// 	var nameOption = $('<option value="' + names[i] + '" />');
+	// 	nameOption.appendTo('#names-list');
+	// }
 }
