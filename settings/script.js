@@ -12,6 +12,7 @@ function padHour(hour) {
 }
 
 
+
 $(document).ready(function() {
 	init();
 	$('body').on('click', '.minus', function() {
@@ -27,8 +28,51 @@ $(document).ready(function() {
 			button.click();
 			return false;
 		}
-	})
+	});
+	$('#save-button').on('click', function(event) {
+		event.preventDefault();
+		createJSON();
+		return false;
+	});
+	$('#revert-button').on('click', function(event) {
+		event.preventDefault();
+		location.reload();
+		return false;
+	});
 });
+
+function createJSON() {
+	var locations = []
+	var json = {}
+	$('div').each(function(i) {
+		if ($(this).hasClass('tab-pane')) {
+			var locationName = $(this).find('h3').html();
+			locations.push(locationName);
+		}
+	});
+	for (var i = 0; i < locations.length; i++) {
+		json[locations[i]] = i;
+	}
+	console.log(JSON.stringify(json));
+
+	var pathname = window.location.pathname; // Returns path only
+	var url      = window.location.href;
+
+  $.ajax({
+      url: pathname + 'action.php',
+      type: 'POST',
+      data: {'json': json},
+			success: function() {
+				console.log('success i guess?');
+			},
+			error: function(e){
+				console.log('error i guess?');
+			}
+  });
+	// for (var i = 0; i < locations.length; i++) {
+	// 	console.log(locations[i]);
+	// }
+}
 
 function sort(columnId) {
 	tinysort('#' + columnId + ' > div', {selector:'',attr:'id'});
@@ -93,7 +137,7 @@ function addEntry(columnId, day, hour, name) {
 		var divElem = $('<div id="' + divId + '"></div>')
 		var hourInput = $('<input type="number" min="0" max="23" id="' + hourId + '" class="hour">');
 		var nameInput = $('<input type="text" id="' + nameId + '" class="name">');
-		var minusButton = $('<button id="' + buttonId + '"class="btn btn-danger minus" type="button">-</button>')
+		var minusButton = $('<button id="' + buttonId + '"class="btn btn-danger minus" type="button">-</button>');
 
 		hourInput.val(hour);
 		nameInput.val(name);
@@ -114,13 +158,13 @@ function addEntry(columnId, day, hour, name) {
 function addEmptyEntry(columnId) {
 	var hourInput = $('<input type="number" min="0" max="23" class="hour" placeholder="Hour">');
 	var nameInput = $('<input type="text" class="name" placeholder="Name">');
-	var plusButton = $('<button class="btn btn-default plus" type="button">+</button><br>')
+	var plusButton = $('<button class="btn btn-default plus" type="button">+</button><br>');
 
-	var div = $('<div class="empty-entry" id="' + 'empty-' + columnId + '"></div>')
+	var div = $('<div class="empty-entry" id="' + 'empty-' + columnId + '"></div>');
 
-	hourInput.appendTo(div)
-	nameInput.appendTo(div)
-	plusButton.appendTo(div)
+	hourInput.appendTo(div);
+	nameInput.appendTo(div);
+	plusButton.appendTo(div);
 
 	div.appendTo('#' + columnId);
 	hourInput.focus();
@@ -150,11 +194,11 @@ function init() {
 			$.each(val, function(key, val) {
 				var day = key;
 
-				var columnId = 'col' + locationId + 'day-' + dayStringToNum(day)
+				var columnId = 'col' + locationId + 'day-' + dayStringToNum(day);
 
 				var columnElem = $('<div class="col-md-1" id="' + columnId + '"></div>');
 				var dayElem = $('<br><label class="day">' + day + '</label><br>');
-				columnElem.appendTo('#' + locationId)
+				columnElem.appendTo('#' + locationId);
 				dayElem.appendTo('#' + columnId);
 
 				$.each(val, function(key, val) {
